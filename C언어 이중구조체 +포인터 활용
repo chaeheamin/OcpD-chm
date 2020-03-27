@@ -1,0 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+typedef struct addr {
+	char city[20];
+	char street[20];
+	char detail[20];
+} address;
+typedef struct tag {
+	char name[20];
+	int age;
+	address addr;
+} person;
+
+void read_person(person* p);
+void print_person(person* p);
+
+int main()
+{
+	person* p[20];
+	p[0] = (person*)malloc(sizeof(person)); 
+	read_person(p[0]);
+	print_person(p[0]);
+	return 0;
+}
+
+void read_person(person* p) {
+	scanf("%s %d %s %s %s", p->name, &p->age, p->addr.city, p->addr.street, p->addr.detail);
+}
+void print_person(person* p) {
+	printf("이름: %s (%d세)  주소: %s %s %s\n", p->name, p->age, p->addr.city, p->addr.street, p->addr.detail);
+}
