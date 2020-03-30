@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>웹 페이지의 구성요소</title>
+    <style>
+    body{background-color: linen; color:green;
+          margin-left:40px; margin-right: 40px;}
+    h3{text-align: center; color: darkred;}
+    hr{height: 5px; border: solid grey; background-color: grey}
+    span{color:blue; font-size:20px;}
+    </style>
+    <script>
+      funtion show(){
+        document.getElementsById('fig').src = "7.png"
+      }
+      funtion hide(){
+        document.getElementsById('fig').src = "";
+      }
+    </script>
+  </head>
+  <body>
+    <h3 onmouseover="show()" onmouseout="hide()">Elvis Presley</h3>
+    <hr>
+    <div><img id="fig" src=""></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      possimus quibusdam in omnis fugiat nobis assumenda culpa rem doloribus
+      tempore, obcaecati temporibus voluptatem ea soluta magnam itaque atque
+      minima. Nemo odit suscipit sint odio maxime assumenda, facere ratione
+      eveniet saepe et. <span>Nihil, voluptas rerum.</span> Sed esse, facere
+      voluptatem eius doloribus praesentium. <span>Enim rem ut veritatis
+      maiores sed at quibusdam alias, perferendis!</span></p>
+  </body>
+</html>
