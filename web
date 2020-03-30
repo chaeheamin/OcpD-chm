@@ -10,11 +10,11 @@
     span{color:blue; font-size:20px;}
     </style>
     <script>
-      funtion show(){
-        document.getElementsById('fig').src = "7.png"
+      function show(){  
+        document.getElementById("fig").src = "7.png"
       }
-      funtion hide(){
-        document.getElementsById('fig').src = "";
+      function hide(){
+        document.getElementById("fig").src = "";
       }
     </script>
   </head>
