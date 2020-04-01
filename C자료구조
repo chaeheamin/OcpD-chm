@@ -1,0 +1,41 @@
+#include<stdio.h>
+typedef int element;
+typedef struct tag{
+element* data;
+int capacity;
+int top;
+}StackType;
+
+void init_stack(StackType *s){
+s->capacity=16;
+s->data=(element*)malloc(s->capacity*sizeof(StackType));
+s->top=-1;
+}
+
+int is_full(StackType *s){
+return (s->top==s->capacity);
+}
+
+int is_empty(StackType *s){
+return ( s->top==-1);
+}
+
+void push(StackType *s, element a){
+if(is_full(s)){
+s->capacity*=2;
+s->data=(StackType*)realloc(s->data, s->capacity*sizeof(StackType));
+}
+s->data[++(s->top)]=a;
+}
+
+void pop(StackType *s){		//element로 선언해야함!! 주의
+if(is_empty(s)){
+fprint(stdrr,"ERROR-ISEMPTY");
+exit(1);
+}
+return s->data[s->top--];
+}		//pop 함수 마지막 부분에 어떻게 처리? 이론상은 값은 있으나 top만 감소,, 위에 참고 
+
+int main(){
+StackType *sp;
+}
