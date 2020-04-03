@@ -1,0 +1,86 @@
+// 헤더 생략(지난번 커밋에 있습니다)
+#include "stack.h"
+#define MAZE_SIZE 20
+#define WALL '1'
+#define ROAD '0'
+#define GOAL 'G'
+#define VISITED '.'
+#define PATH '#'
+#define HERE '*'
+int maze_size = 0;
+element entry = { 0, 0 };
+char maze[MAZE_SIZE][MAZE_SIZE];
+
+// 위치를 스택에 삽입
+// 미로 내의 좌표이고 벽이나 이미 방문한 경로가 아니면
+// 그것을 element를 만들어서 push
+void push_loc(StackType* s, int x, int y)
+{
+	if (x < 0 || y < 0) return;
+	if (x >= maze_size || y >= maze_size) return;
+	if (maze[x][y] != WALL && maze[x][y] != VISITED) {
+		element tmp;
+		tmp.x = x;
+		tmp.y = y;
+		push(s, tmp);
+	}
+}
+// 미로를 화면에 출력한다. 
+void maze_print()		//매개변수왜없냐
+{
+	printf("\n");
+	for (int x = 0; x < maze_size; x++) {
+		printf("%s\n", maze[x]);  // 한행씩 문자열처럼 출력
+	}
+}
+void init_maze(element* entry)
+{
+	printf("maze size = ");
+	scanf_s("%d", &maze_size);
+	for (int x = 0; x < maze_size; x++) {
+		printf("%d행: ", x);  // 한 행씩 문자열처럼 입력
+		scanf_s("%s", maze[x], MAZE_SIZE);
+	}
+}
+int neighbor(element next, element here) {  
+	if ()                       //if 조건이 next의 x,y값과 here의 x,y값이 각각 한 변수에서만 +-1일때 조건이어야
+                              // 이때 참조변수로 x,y는 &&로, +-4가지의 경우는 ||로 해줄 수가 있는데 조건식이 너무 길어집니다
+                              // 간단하게 하는 방법을 찾고 있으나 아직 고안하지 못했습니다ㅜ
+		return 1;
+	else return 0;
+}
+int main(void)
+{
+	int x, y;
+	char buf[10];
+	element here, next;
+	StackType expectGo, path;
+	init_stack(&expectGo);
+	init_stack(&path);
+	init_maze(&entry);
+	here = entry;  // 구조체 지정 (x, y) 값 복사
+	while (maze[here.x][here.y] != GOAL) {
+		maze[x][y] = PATH;
+		x = here.x;
+		y = here.y;
+		maze[x][y] = HERE;
+		gets_s(buf, 10);   // 엔터 쳐야 넘어가게 잠깐 멈춤 기능
+		maze_print(maze);  // 현재 미로 상태 출력
+		push_loc(&expectGo, x - 1, y);  // 상
+		push_loc(&expectGo, x + 1, y);  // 하
+		push_loc(&expectGo, x, y - 1);  // 좌
+		push_loc(&expectGo, x, y + 1);  // 우.. 갈수 있는 곳을 모두 push
+		next = pop(&expectGo);
+		if (is_empty(&expectGo)) {  // 더이상 갈곳이 없으면 길이 없다는 뜻
+			next = pop(&expectGo);
+			while (!neighbor(next, here)) {
+				x = here.x;
+				y = here.y;
+				maze[x][y] = VISITED;
+				here = pop(&path);
+			}
+		}
+	}
+	printf("성공\n");
+	return 0;
+}
