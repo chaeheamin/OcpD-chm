@@ -1,0 +1,103 @@
+#include "stack.h"
+#define MAZE_SIZE 20
+#define WALL '1'
+#define ROAD '0'
+#define GOAL 'G'
+#define VISITED '.'
+#define PATH '#'
+#define HERE '*'
+int maze_size = 0;
+element entry = { 0, 0 };
+char maze[MAZE_SIZE][MAZE_SIZE];
+
+// 위치를 스택에 삽입
+// 미로 내의 좌표이고 벽이나 이미 방문한 경로가 아니면
+// 그것을 element를 만들어서 push
+void push_loc(StackType* s, int x, int y)
+{
+	if (x < 0 || y < 0) return;
+	if (x >= maze_size || y >= maze_size) return;
+	if (maze[x][y] != WALL && maze[x][y] != VISITED && maze[x][y] != PATH) {
+		element tmp;
+		tmp.x = x;
+		tmp.y = y;
+		push(s, tmp);
+	}
+}
+// 미로를 화면에 출력한다. 
+void maze_print()		//매개변수왜없냐
+{
+	printf("\n");
+	for (int x = 0; x < maze_size; x++) {
+		printf("%s\n", maze[x]);  // 한행씩 문자열처럼 출력
+	}
+}
+void init_maze(element* entry)
+{
+	printf("maze size = ");
+	scanf_s("%d", &maze_size);
+	for (int x = 0; x < maze_size; x++) {
+		printf("%d행: ", x);  // 한 행씩 문자열처럼 입력
+		scanf_s("%s", maze[x], MAZE_SIZE);
+	}
+}
+int neighbor(element next, element here) {
+	if ((abs(next.x-here.x)==1)&&(next.y==here.y) || (abs(next.y - here.y) == 1) && (next.x == here.x))
+		return 1;
+	else return 0;
+}
+int main(void)
+{
+	int x, y;
+	char buf[10];
+	element here, next;
+	StackType expectGo;
+	StackType path;
+	init_stack(&expectGo);
+	init_stack(&path);
+	init_maze(&entry);
+	here = entry;  // 구조체 지정 (x, y) 값 복사
+	push(&path, here);
+	while (maze[here.x][here.y] != GOAL) {
+		x = here.x;
+		y = here.y;
+		maze[x][y] = HERE;
+		gets_s(buf, 10);   // 엔터 쳐야 넘어가게 잠깐 멈춤 기능
+		maze_print();  // 현재 미로 상태 출력
+		printf("< PATH > %-15.s"," ");
+		print_stack(&path);
+		printf("< UNVISITED > %-10.s", " ");
+		print_stack(&expectGo);
+		gets_s(buf, 10);
+		push_loc(&expectGo, x - 1, y);  // 상 
+		push_loc(&expectGo, x + 1, y);  // 하 
+		push_loc(&expectGo, x, y - 1);  // 좌  
+		push_loc(&expectGo, x, y + 1);  // 우.. 갈수 있는 곳을 모두 push
+		maze_print(); 
+		printf("< PATH > %-20.s", " ");
+		print_stack(&path);
+		printf("< UNVISITED > %-15.s", " ");
+		print_stack(&expectGo);
+
+		if (is_empty(&expectGo)) {
+			printf("ERROR - ISEMPTY\n");
+			exit(1);
+		}
+
+		maze[x][y] = PATH;
+		push(&path, here);
+		next = pop(&expectGo); 
+		while (!neighbor(next,here)) {
+			maze[here.x][here.y] = VISITED;
+			here = pop(&path);
+			if (neighbor(next, here))
+				push(&path, here);
+		}
+		here = next;
+		printf("다음 팝한 곳 : ( %d, %d ) \n", here.x, here.y);
+	}
+	maze[here.x][here.y] = HERE;
+	maze_print();
+	printf("성공\n");
+	return 0;
+}
