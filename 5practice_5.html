@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>연습 문제</title>
+</head>
+<body>
+    <form>
+    <table>
+        <tr>
+                <td><label for="ID"><b>아이디</b></label></td>
+                <td><input type="text" id="ID"></td>
+        </tr>
+        <tr>
+                <td><label for="PW"><b>비밀번호</b></label></td>
+                <td><input type="password" id="PW"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="제출"></td>
+        </tr>
+    </table>
+    </form>
+    <br><br>
+    <form>
+        <label for="startgroup"><b>시작그룹</b><br>
+            <input type="radio" name="startgroup">새 탭 페이지 열기<br>
+            <input type="radio" name="startgroup">중단한 위치에서 계속하기<br>
+            <input type="radio" name="startgroup">특정 페이지 또는 페이지 모음 열기<br>
+        </label> <br>
+        <label for="private"><b>개인정보 및 보안</b><br>
+            <input type="checkbox" name="private">동기화 및 서비스<br>
+            <input type="checkbox" name="private">로그인 허용<br>
+            <input type="checkbox" name="private">페이지 미리 로드<br>
+        </label>
+    </form>
+    <br><br>
+    <h1>글 작성하기</h1><br>
+    <table>
+        <tr>
+            <td><label for="who"><b>작성자</b></label></td>
+            <td><input name="who" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="id"><b>아이디</b></label></td>
+            <td><input type="text" name="id"></td>
+        </tr>
+        <tr>
+            <td><label for="email"><b>이메일</b></label></td>
+            <td><input type="email" name="email"></td>
+        </tr>
+        <tr>
+            <td><label for="phonenum"><b>휴대폰</b></label></td>
+            <td><select name="phonenum" id="">
+                    <option value="phonenum">010</option>
+                    <option value="phonenum">011</option>
+                    <option value="phonenum">017</option>
+                </select>
+            - <input type="number" name="phonenum"> - <input type="number" name="phonenum"></td>
+        </tr>
+        <tr>
+            <td><label for="title"><b>글제목</b></label></td>
+            <td><input type="text" name="title"></td>
+        </tr>
+        <tr>
+            <td><label><b>내용</b></label></td>
+            <td><textarea cols="30" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="제출"></td>
+        </tr>
+        
+    </table>
+</body>
+</html>
