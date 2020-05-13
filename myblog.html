@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>myBlog</title>
+    <style>
+        .head{ display: flex; flex-direction: column-reverse; }
+        #mainimg{ width: 100%; height: 300px;}
+        .mainI:first-child{ opacity: 0.6 ;}
+        .mainI:first-child:hover{ background-color: black; opacity: 1; }
+        .mainI:nth-child(2){ position: absolute; top: 120px; left: 40%; text-align: center; margin: 0 auto;}
+        .mainI span{ font-size: 14px; font-weight: bold; border: 1px solid skyblue; 
+                    padding: 10px; margin: 5px; background-color: rgb(214, 242, 253);
+                    border-radius: 10px;}
+        .nav1{ text-align: right; font-size: 14px; padding: 5px; margin: 10px; }
+        .Body{ padding-top: 10px; width: 100%;}
+        .Body>*{ float: left;}
+        .nav2{ width: 160px; border-right: 1px solid gray; padding: 10px;}
+        .sect{ width: 78%; border-left: 1px solid gray; padding: 10px; text-align: center;
+                margin-left: -1px; align-items: center;}
+    </style>
+</head>
+<body>
+    <div class="head">
+        <header>
+            <img src="7.png" alt="메인" id="mainimg" class="mainI">
+            <div class="mainI" >
+                <h1>HeaMin's Blog</h1>
+                <h4>Chae Hea Min</h4><br>
+                <span>이웃 추가 +</span>
+                <span>소개 +</span>
+            </div>            
+        </header>
+        <nav class="nav1">
+            <table>
+                <tr><td>내 블로그</td><td> </td><td>내 정보</td></tr>
+            </table>
+        </nav>
+    </div>
+    <div class="Body">
+        <div class="nav2">
+            <nav>
+                <ul>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                    <li>1</li>
+                </ul>
+                <ul>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                    <li>2</li>
+                </ul>
+            </nav>
+        </div>
+        <section class="sect">
+            <article>
+                <img src="" alt="">
+                <h3>title1</h3>
+                <p>미리보기 ... ... 더보기 +</p>
+            </article>
+            <article>
+                <img src="" alt="">
+                <h3>title1</h3>
+                <p>미리보기 ... ... 더보기 +</p>
+            </article>
+            <article>
+                <img src="" alt="">
+                <h3>title1</h3>
+                <p>미리보기 ... ... 더보기 +</p>
+            </article>
+            <article>
+                <img src="" alt="">
+                <h3>title1</h3>
+                <p>미리보기 ... ... 더보기 +</p>
+            </article>
+        </section>
+    </div>
+</body>
+</html>
